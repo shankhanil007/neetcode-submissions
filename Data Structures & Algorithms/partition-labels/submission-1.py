@@ -1,0 +1,19 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+
+        l, r = 0, 0
+        ans = []
+        hmap = {}
+        for idx, ch in enumerate(s):
+            hmap[ch] = idx
+
+        for idx, ch in enumerate(s):
+            if idx > r:
+                window = r - l + 1
+                ans.append(window)
+                l = idx
+            r = max(r, hmap[ch])
+        window = r - l + 1
+        ans.append(window)
+        return ans
+

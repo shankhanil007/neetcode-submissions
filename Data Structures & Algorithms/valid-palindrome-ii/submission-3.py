@@ -1,0 +1,18 @@
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        
+        def isPalindrome(l, r):
+            while l<r:
+                if s[l] != s[r]:
+                    return False
+                l, r = l+1, r-1
+            return True
+
+        i, j = 0, len(s) - 1
+        while i<j:
+            if s[i] != s[j]:
+                return isPalindrome(i,j-1) or isPalindrome(i+1,j) ### SIMPLIFY
+            i, j = i+1, j-1
+        
+        return True             ### DO not forget when the string itself is Palindrome
+                
